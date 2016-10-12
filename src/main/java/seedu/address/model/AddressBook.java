@@ -51,6 +51,26 @@ public class AddressBook implements ReadOnlyAddressBook {
         return tasks.getInternalList();
     }
 
+    /**
+     * Returns the first task that matches the argument string
+     * @param nameArg   non null string
+     * @return          read only object
+     */
+    public ReadOnlyTask getTask(String nameArg) throws UniqueTaskList.TaskNotFoundException {
+        List<ReadOnlyTask> matchedTasks =
+                tasks.getInternalList().stream().filter(
+                        t -> t.getName().taskName.contentEquals(nameArg)
+                ).collect(Collectors.toList());
+        // filter tasks that match argument
+
+        if(matchedTasks.size() == 0) {
+            throw new UniqueTaskList.TaskNotFoundException();
+        }
+        // throw error if not found
+
+        return matchedTasks.get(0);
+    }
+
     public void setTasks(List<Task> tasks) {
         this.tasks.getInternalList().setAll(tasks);
     }
