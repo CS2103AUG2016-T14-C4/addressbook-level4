@@ -4,6 +4,7 @@ import seedu.address.logic.commands.*;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.commons.exceptions.IllegalValueException;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -128,12 +129,24 @@ public class Parser {
     private Command prepareDelete(String args) {
 
         Optional<Integer> index = parseIndex(args);
+        // check if argument is index
+
         if(!index.isPresent()){
-            return new IncorrectCommand(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            String nameMatch = args.length() > 0 ? args.substring(1) : args;
+            // remove white space from command delimiter
+
+            if(nameMatch.contentEquals("")) {
+                return new IncorrectCommand(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            }
+            // invalid delete command if no arguments
+
+            return new DeleteCommand(nameMatch);
+            // create delete by name
         }
 
         return new DeleteCommand(index.get());
+        // create delete by index
     }
 
     /**
@@ -177,16 +190,26 @@ public class Parser {
      * @return the prepared command
      */
     private Command prepareFind(String args) {
-        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
-        if (!matcher.matches()) {
+        final Set<String> keywordSet = stringToKeywordSet(args);
+        if(keywordSet == null) {
             return new IncorrectCommand(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindCommand.MESSAGE_USAGE));
         }
+        return new FindCommand(keywordSet);
+    }
+
+    /**
+     * process a string argument as keywords format
+     * @param args
+     * @return  the set of keywords, null if invalid format
+     */
+    private Set<String> stringToKeywordSet(String args) {
+        final Matcher matcher = KEYWORDS_ARGS_FORMAT.matcher(args.trim());
+        if (!matcher.matches()) return null;
 
         // keywords delimited by whitespace
         final String[] keywords = matcher.group("keywords").split("\\s+");
-        final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
-        return new FindCommand(keywordSet);
+        return new HashSet<>(Arrays.asList(keywords));
     }
 
 }
