@@ -71,6 +71,13 @@ public class ModelManager extends ComponentManager implements Model {
     }
 
     @Override
+    public synchronized ReadOnlyTask deleteTask(String target) throws TaskNotFoundException {
+        ReadOnlyTask capture = addressBook.getTask(target);
+        deleteTask(capture);
+        return capture;
+    }
+
+    @Override
     public synchronized void addTask(Task task) throws UniqueTaskList.DuplicateTaskException {
         addressBook.addTask(task);
         updateFilteredListToShowAll();
