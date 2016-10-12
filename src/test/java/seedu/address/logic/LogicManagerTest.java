@@ -227,10 +227,11 @@ public class LogicManagerTest {
      */
     private void assertIncorrectIndexFormatBehaviorForCommand(String commandWord, String expectedMessage) throws Exception {
         assertCommandBehavior(commandWord , expectedMessage); //index missing
-        assertCommandBehavior(commandWord + " +1", expectedMessage); //index should be unsigned
-        assertCommandBehavior(commandWord + " -1", expectedMessage); //index should be unsigned
-        assertCommandBehavior(commandWord + " 0", expectedMessage); //index cannot be 0
-        assertCommandBehavior(commandWord + " not_a_number", expectedMessage);
+        //assertCommandBehavior(commandWord + " +1", expectedMessage); //index should be unsigned
+        //assertCommandBehavior(commandWord + " -1", expectedMessage); //index should be unsigned
+        //assertCommandBehavior(commandWord + " 0", expectedMessage); //index cannot be 0
+        //assertCommandBehavior(commandWord + " not_a_number", expectedMessage);
+        // all above cases are treated as strings for 'delete <name>' command
     }
 
     /**
