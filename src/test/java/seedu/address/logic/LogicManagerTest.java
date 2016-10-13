@@ -292,6 +292,27 @@ public class LogicManagerTest {
         assertIndexNotFoundBehaviorForCommand("delete");
     }
 
+    /** Confirms the 'invalid argument name behavior' for the delete command
+     * @throws Exception
+     */
+    @Test
+    public void execute_deleteUniqueNameNotFound_errorMessageShown() throws Exception {
+        String expectedMessage = MESSAGE_INVALID_TASK_NAME_SEARCH;
+        TestDataHelper helper = new TestDataHelper();
+        List<Task> taskList = helper.generateTaskList(3);
+
+        // extract one task out of task list state
+        Task removedTask = taskList.remove(0);
+
+        // set task list state
+        model.resetData(new AddressBook());
+        for (Task p : taskList) {
+            model.addTask(p);
+        }
+
+        assertCommandBehavior("delete " + removedTask.getName().taskName, expectedMessage, model.getAddressBook(), taskList);
+    }
+
     @Test
     public void execute_delete_removesCorrectTask() throws Exception {
         TestDataHelper helper = new TestDataHelper();
