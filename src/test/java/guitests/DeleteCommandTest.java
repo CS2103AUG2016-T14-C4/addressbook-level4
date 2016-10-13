@@ -79,7 +79,7 @@ public class DeleteCommandTest extends AddressBookGuiTest {
                 }
             }
         }
-        System.out.println(taskToDelete);
+        
         // generate expectedRemainder
         TestTask[] expectedRemainder = multiMatch ?
                 currentList :
