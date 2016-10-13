@@ -10,9 +10,17 @@ import java.util.List;
  */
 public class StringUtil {
     public static boolean containsIgnoreCase(String source, String query) {
-        String[] split = source.toLowerCase().split("\\s+");
-        List<String> strings = Arrays.asList(split);
+        List<String> strings = listifyString(source);
         return strings.stream().filter(s -> s.equals(query.toLowerCase())).count() > 0;
+    }
+
+    public static boolean containsSubstringIgnoreCase(String source, String query) {
+        List<String> strings = listifyString(source);
+        return strings.stream().filter(s -> s.contains(query.toLowerCase())).count() > 0;
+    }
+
+    private static List<String> listifyString(String source) {
+        return Arrays.asList(source.toLowerCase().split("\\s+"));
     }
 
     /**
