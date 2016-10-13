@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 
+import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.UniqueTagList;
 import seedu.address.model.task.Task;
@@ -63,7 +64,7 @@ public class AddressBook implements ReadOnlyAddressBook {
                 ).collect(Collectors.toList());
         // filter tasks that match argument
 
-        if(matchedTasks.size() == 0) {
+        if(matchedTasks.size() == 0 || matchedTasks.size() > 1) {
             throw new UniqueTaskList.TaskNotFoundException();
         }
         // throw error if not found
