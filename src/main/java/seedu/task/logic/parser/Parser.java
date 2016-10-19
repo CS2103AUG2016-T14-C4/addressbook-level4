@@ -237,11 +237,8 @@ public class Parser {
 			final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
 			return new FindCommand(keywordSet,null);
 		}
-		try{
-		    return new FindCommand(null,getTagsFromArgs(tagMatcher.group("tagArguments")));
-		}catch (IllegalValueException ive) {
-			return new IncorrectCommand(ive.getMessage());
-		}
+		
+		    return new FindCommand(null,tagMatcher.group("tagArguments"));
 	}
 
 }

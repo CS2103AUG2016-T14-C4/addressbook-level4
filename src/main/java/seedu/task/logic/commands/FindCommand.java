@@ -20,22 +20,17 @@ public class FindCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2103 cs 2105";
 
     private final Set<String> keywords;
-    private final Set<String> tag;
+    private final String tag;
 
-    public FindCommand(Set<String> keywords,Set<String> tag) {
+    public FindCommand(Set<String> keywords,String tag) {
         this.keywords = keywords;
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tag) {
-            tagSet.add(new Tag(tagName));
-        }
-        
-        this.tag = new UniqueTagList(tagSet);
+        this.tag = tag;
     }
 
     @Override
     public CommandResult execute() {
-    	if(keywords==null){
-    		model.
+    	if(tag!=null){
+    		model.updateFilteredTagList(tag);
     	}
         model.updateFilteredTaskList(keywords);
         return new CommandResult(getMessageForTaskListShownSummary(model.getFilteredTaskList().size()));
