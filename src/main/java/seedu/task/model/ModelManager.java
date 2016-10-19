@@ -103,7 +103,11 @@ public class ModelManager extends ComponentManager implements Model {
     private void updateFilteredTaskList(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
     }
-
+    
+    @Override
+    public void updateFilteredTagList(String tagKeywords){
+        updateFilteredTaskList(new PredicateExpression(new TagQualifier(tagKeywords)));
+    }
     //========== Inner classes/interfaces used for filtering ==================================================
 
     interface Expression {
@@ -154,6 +158,27 @@ public class ModelManager extends ComponentManager implements Model {
         public String toString() {
             return "name=" + String.join(", ", nameKeyWords);
         }
+    }
+    
+    private class TagQualifier implements Qualifier {
+    	private String tagKeywords;
+    	
+    	TagQualifier(String tagKeywords) {
+    		this.tagKeywords=tagKeywords;
+    	}
+    	
+    	@Override
+    	public boolean run(ReadOnlyTask task) {
+    		return task.getTags().getInternalList().stream()
+    				.filter(tag->tag.tagName.equals(tagKeywords))
+    				.findAny()
+    				.isPresent();
+    	}
+    	
+    	@Override
+    	public  String toString() {
+    	    return "tag name=" + tagKeywords;
+    	}
     }
 
 }

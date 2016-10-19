@@ -51,6 +51,10 @@ public class TaskManager implements ReadOnlyTaskManager {
         return tasks.getInternalList();
     }
 
+    public ObservableList<Tag> getTags() {
+        return tags.getInternalList();
+    }
+    
     public void setTasks(List<Task> tasks) {
         this.tasks.getInternalList().setAll(tasks);
     }
