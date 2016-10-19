@@ -237,8 +237,9 @@ public class Parser {
 			final Set<String> keywordSet = new HashSet<>(Arrays.asList(keywords));
 			return new FindCommand(keywordSet,null);
 		}
-		
-		    return new FindCommand(null,tagMatcher.group("tagArguments"));
+		final String[] tagKeywords = tagMatcher.group("tagArguments").split("\\s+");
+        final Set<String> tagKeywordSet = new HashSet<>(Arrays.asList(tagKeywords));
+		return new FindCommand(null,tagMatcher.group("tagArguments"));
 	}
 
 }

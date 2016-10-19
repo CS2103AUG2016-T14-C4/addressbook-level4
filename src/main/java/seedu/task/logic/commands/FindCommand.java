@@ -31,6 +31,7 @@ public class FindCommand extends Command {
     public CommandResult execute() {
     	if(tag!=null){
     		model.updateFilteredTagList(tag);
+    		return new CommandResult(getMessageForTaskListShownSummary(model.getFilteredTaskList().size()));
     	}
         model.updateFilteredTaskList(keywords);
         return new CommandResult(getMessageForTaskListShownSummary(model.getFilteredTaskList().size()));
