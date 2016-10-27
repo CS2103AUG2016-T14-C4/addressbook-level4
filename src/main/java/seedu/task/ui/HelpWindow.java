@@ -44,10 +44,11 @@ public class HelpWindow extends UiPart {
     }
 
     private void configure(){
-        Scene scene = new Scene(mainPane);
+        Scene scene = new Scene(mainPane,600,450);
         //Null passed as the parent stage to make it non-modal.
         dialogStage = createDialogStage(TITLE, null, scene);
-        dialogStage.setMaximized(true); //TODO: set a more appropriate initial size
+        dialogStage.setScene(scene);
+        //dialogStage.setMaximized(true); 
         setIcon(dialogStage, ICON);
 
         WebView browser = new WebView();
