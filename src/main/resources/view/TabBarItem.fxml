@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- @@author A0141052Y -->
+
+<?import javafx.scene.layout.HBox?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<Label id="tabBarName" fx:id="name" text="Tab Name" style="-fx-padding: 0 2.5 0 2.5;" />
+	</children>
+</HBox>

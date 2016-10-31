@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- @@author A0141052Y -->
+<?import javafx.scene.layout.HBox?>
+
+<HBox id="tabBarPanel" fx:id="tabBarPanel" xmlns:fx="http://javafx.com/fxml/1" fx:controller="seedu.task.ui.TabBarPanel">
+</HBox>
+
