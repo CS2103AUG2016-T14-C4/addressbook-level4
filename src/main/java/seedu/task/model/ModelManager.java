@@ -1,11 +1,15 @@
 package seedu.task.model;
 
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.task.commons.core.ComponentManager;
 import seedu.task.commons.core.LogsCenter;
 import seedu.task.commons.core.UnmodifiableObservableList;
 import seedu.task.commons.events.model.TaskManagerChangedEvent;
 import seedu.task.commons.util.StringUtil;
+import seedu.task.logic.commands.AddCommand;
+import seedu.task.logic.commands.DeleteCommand;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
 import seedu.task.model.task.UniqueTaskList;
@@ -138,7 +142,13 @@ public class ModelManager extends ComponentManager implements Model {
     private void updateFilteredTaskList(Expression expression) {
         filteredTasks.setPredicate(expression::satisfies);
     }
-
+    // ========== Command Instruction List for Help page =======================================================
+    public ObservableList<String> getHelpCommandInstructionList() {
+        ObservableList<String> commandInstruction = FXCollections.observableArrayList();
+        commandInstruction.add(AddCommand.MESSAGE_USAGE);
+        commandInstruction.add(DeleteCommand.MESSAGE_USAGE);
+        return commandInstruction;
+    }
     // ========== Inner classes/interfaces used for filtering ==================================================
 
     interface Expression {

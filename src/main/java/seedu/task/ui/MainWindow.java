@@ -35,6 +35,7 @@ public class MainWindow extends UiPart {
     private CommandBox commandBox;
     private Config config;
     private UserPrefs userPrefs;
+    private HelpPane helpPane;
 
     // Handles to elements of this Ui container
     private VBox rootLayout;
@@ -56,6 +57,9 @@ public class MainWindow extends UiPart {
 
     @FXML
     private AnchorPane statusbarPlaceholder;
+    
+    @FXML
+    private AnchorPane helpTablePanelPlaceHolder;
 
 
     public MainWindow() {
@@ -110,6 +114,9 @@ public class MainWindow extends UiPart {
         commandBox = CommandBox.load(primaryStage, getCommandBoxPlaceholder(), resultDisplay, logic);
     }
 
+    private AnchorPane getHelpPanePlaceHolder() {
+        return helpTablePanelPlaceHolder;
+    }
     private AnchorPane getCommandBoxPlaceholder() {
         return commandBoxPlaceholder;
     }
@@ -158,11 +165,13 @@ public class MainWindow extends UiPart {
         return new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
     }
-
+    
+    public void showHelp() {
+        helpTablePanelPlaceHolder.getParent().setVisible(true);
+    }
     @FXML
     public void handleHelp() {
-        HelpWindow helpWindow = HelpWindow.load(primaryStage);
-        helpWindow.show();
+        helpPane = HelpPane.load(primaryStage, getHelpPanePlaceHolder(), logic.getHelpCommandInstructionList()); 
     }
 
     public void show() {

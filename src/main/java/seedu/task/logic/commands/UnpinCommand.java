@@ -36,10 +36,10 @@ public class UnpinCommand extends UndoableCommand {
         ReadOnlyTask orginialTask = lastShownList.get(targetIndex - 1);
         try {
             Task taskToUnpin = new Task(orginialTask);
-            if(taskToUnpin.getImportance()){
+            if (taskToUnpin.getImportance()) {
                 taskToUnpin.setIsImportant(false);
                 model.unpinTask(orginialTask, taskToUnpin);
-            }else{
+            } else {
                 return new CommandResult(false, Messages.MESSAGE_INVALID_UNPIN_TASK);
             }
         } catch (IllegalValueException e) {
