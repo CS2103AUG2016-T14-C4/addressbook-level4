@@ -32,6 +32,14 @@
                <AnchorPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
 	  	   </children>
 	  </VBox>
+	  <VBox fx:id="HelpPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="300.0" prefWidth="500.0">
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <AnchorPane fx:id="helpPanelPlaceHolder" />
+               </children>
+</VBox>
       <AnchorPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="anchor-pane-with-border" minHeight="100" prefHeight="100" maxHeight="100">
            <padding>
                <Insets top="5.0" bottom="5.0" left="10.0" right="10.0"/>
