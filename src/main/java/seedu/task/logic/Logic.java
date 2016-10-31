@@ -25,5 +25,8 @@ public interface Logic {
 
     /** Returns the filtered list of tasks */
     ObservableList<ReadOnlyTask> getFilteredTaskList();
+    
+    /** Returns the command instruction list*/
+    ObservableList<String> getHelpCommandInstructionList();
 
 }

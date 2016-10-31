@@ -2,6 +2,7 @@ package seedu.task.model;
 
 import java.util.Set;
 
+import javafx.collections.ObservableList;
 import seedu.task.commons.core.UnmodifiableObservableList;
 import seedu.task.model.task.ReadOnlyTask;
 import seedu.task.model.task.Task;
@@ -53,6 +54,8 @@ public interface Model {
     /** Updates the filter of the filtered task list to show all tasks */
     void updateFilteredListToShowAll();
 
+    /** Returns a list of command instruction for help page*/
+    ObservableList<String> getHelpCommandInstructionList();
     /**
      * Updates the filter of the filtered task list to filter by the given
      * keywords
