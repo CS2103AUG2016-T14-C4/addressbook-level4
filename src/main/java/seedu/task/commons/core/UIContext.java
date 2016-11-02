@@ -14,6 +14,19 @@ public class UIContext {
      */
     public enum Type {
         RESULT_PAGE,
-        WEB_BROWSER
+        HELP_BROWSER
+    }
+    
+    /**
+     * A non-specific reference to a type of tab
+     * @author Syed Abdullah
+     *
+     */
+    public enum Tabs {
+        ALL,
+        PENDING,
+        COMPLETED,
+        PINNED,
+        HELP
     }
 }
