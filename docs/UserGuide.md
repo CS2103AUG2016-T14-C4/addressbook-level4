@@ -29,7 +29,7 @@
    * **`update`**`1 name presentation ends tomorrow` : updates first task on the list to presentation having a deadline tomorrow while the number '1' is the index of task on the list
    * **`undo`** : undo previous one action
    * **`pin`**`1` : pin the first task in the list
-   * **'change-to'**`data/taskmanager.xml`: change the storage location
+   * **`change-to`**`data/taskmanager.xml`: change the storage location
    * **`unpin`**`1` : unpin the pinned first task in the list
    * **`exit`** :exit the program
 6. Refer to the [Features](#features) section below for details of each command.<br>
